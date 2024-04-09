@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField]
-    float destroyDelay = 5f;
+    float destroyDelay = 4f;
 
   
     void Update()
