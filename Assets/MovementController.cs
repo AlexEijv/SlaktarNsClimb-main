@@ -10,6 +10,9 @@ public class MoveController : MonoBehaviour
   float speed = 3;
 
   [SerializeField]
+  float sprintSpeed = 5f;
+
+  [SerializeField]
   float jumpForce = 300;
 
   [SerializeField]
@@ -21,7 +24,7 @@ public class MoveController : MonoBehaviour
 
   void Update()
   {
-    Vector3 movement = transform.forward * inputVector.y + 
+    Vector3 movement = transform.forward * inputVector.y +
                         transform.right * inputVector.x;
     movement *= speed;
 
@@ -39,8 +42,22 @@ public class MoveController : MonoBehaviour
 
     isJumping = false;
     GetComponent<CharacterController>().Move(movement * Time.deltaTime);
+
   }
 
   void OnMove(InputValue value) => inputVector = value.Get<Vector2>();
   void OnJump(InputValue value) => isJumping = true;
-}	
+
+  void onRun()
+  {
+    if (Input.GetButtonDown("Fire3"))
+    {
+      speed = sprintSpeed;
+    }
+    else
+    {
+      speed = 3f;
+    }
+  }
+
+}
